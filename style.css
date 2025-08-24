@@ -1,1 +1,22 @@
+#display_container{
+    height: fit-content;
+    width:300px;
+    border: 1px solid black;
+}
 
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#display{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    height: 30px;
+    width: inherit;
+}
