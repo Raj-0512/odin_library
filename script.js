@@ -1,35 +1,111 @@
 
-function Books(name)
+function Books(name ,author , pages , read , read_status)
 {
     this.name = name;
     this.id = crypto.randomUUID();
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.read_status = read_status;
 }
 
-const Library = [new Books("Book1") , new Books("Book2") , new Books("Book3")];
+const Library = [new Books("Book1" , "Author1" , "892" , "Yes" , "") ,
+                         new Books("Book2", "Author2" , "323" , "No" , "") ,
+                         new Books("Book3", "Author3" ,"224" , "Yes" , "")];
 
-function addBooktoLibrary(name)
+function addBooktoLibrary(name , author , pages , read , read_status)
 {
-    const book = new Books(name);
+    const book = new Books(name , author , pages , read , read_status);
     Library.push(book);
 }
 
-function displayBooks()
-{
 
+function displayBooks() {
 
+    let display_container = document.getElementById("display_container");
 
-    const display_container = document.createElement("div");
-    display_container.id = "display_container";
+    if (!display_container) {
+        display_container = document.createElement("div");
+        display_container.id = "display_container";
+        const button = document.getElementById("new_book");
+        button.insertAdjacentElement("beforebegin", display_container);
+    }
+
     display_container.innerHTML = "";
-    document.body.append(display_container);
+
+    const table = document.createElement("table");
+
+    const headerRow = document.createElement("tr");
+    headerRow.innerHTML = `
+      <th>Name</th>
+      <th>Author</th>
+      <th>Pages</th>
+      <th>Read</th>
+      <th>Read Status</th>
+    `;
+    table.appendChild(headerRow);
 
     Library.forEach(book => {
-      let display = document.createElement("div");
-      display.id = "display";
-        display.innerHTML = `<strong>Name: ${book.name} </strong>`;
-        display_container.append(display);
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td><strong>${book.name}</strong></td>
+          <td><strong>${book.author}</strong></td>
+          <td><strong>${book.pages}</strong></td>
+          <td><strong>${book.read}</strong></td>
+          <td><strong>${book.read_status}</strong></td>
+        `;
+        table.appendChild(row);
     });
+
+    display_container.appendChild(table);
+}
+
+function addNewBook()
+{
+     const overlay = document.createElement("div");
+     overlay.id = "overlay";
+
+     const form_container = document.createElement("div");
+     form_container.id = "form_container";
+
+     const form = document.createElement("form");
+     form.id = "form";
+
+     form.innerHTML = `
+         <input type="text" placeholder="Book Name" id="book_name" required>
+         <input type="text" placeholder="Author Name" id="author_name" required>
+         <input type="number" placeholder="Pages" id="pages" required>
+         
+         <label style="font-size: 20px;">
+            <input type="checkbox" id="read" style="height: 15px; width:15px;"> Already Read?
+        </label>
+        
+         <button type="submit" id="add_book_button">Add Book</button>
+         <button type="button" id="cancel_button">Cancel</button>`;
+
+     form.addEventListener("submit" , function(e) {
+         e.preventDefault();
+
+         const name = document.getElementById("book_name").value;
+         const author_name = document.getElementById("author_name").value;
+         const pages = document.getElementById("pages").value;
+         const read = document.getElementById("read").checked ? "Yes" : "No";
+
+         addBooktoLibrary(name , author_name , pages , read , "");
+         displayBooks();
+
+         overlay.remove();
+     });
+
+     form.querySelector("#cancel_button").addEventListener("click" , () => {
+         overlay.remove();
+     });
+
+     form_container.append(form);
+     overlay.append(form_container);
+     document.body.append(overlay);
 
 }
 
 displayBooks();
+
