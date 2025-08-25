@@ -9,9 +9,9 @@ function Books(name ,author , pages , read)
 
 }
 
-const Library = [new Books("Book1" , "Author1" , "892" , "Yes") ,
-                         new Books("Book2", "Author2" , "323" , "No") ,
-                         new Books("Book3", "Author3" ,"224" , "Yes")];
+const Library = [new Books("Moby-Dick" , "Herman Melville" , "635" , "Yes") ,
+                         new Books("The Alchemist", "Paulo Coelho" , "208" , "No") ,
+                         new Books("Brave New World", "Aldous Huxley" ,"288" , "Yes")];
 
 function addBooktoLibrary(name , author , pages , read)
 {
@@ -135,7 +135,20 @@ function addNewBook()
      overlay.append(form_container);
      document.body.append(overlay);
 
+
 }
+
+const header_text = document.createElement("p");
+header_text.id = "header_text";
+header_text.textContent = "My Library";
+header_text.style.fontSize = "40px";
+header_text.style.fontWeight = "bold";
+header_text.style.textAlign = "center";
+header_text.style.marginBottom = "0";
+
+
+
+document.body.prepend(header_text);
 
 displayBooks();
 

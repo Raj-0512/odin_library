@@ -1,19 +1,21 @@
 #display_container{
     height: fit-content;
     width:800px;
-    border: 1px solid black;
+    border: transparent;
+    border-radius: 10px;
+    margin-top: 100px;
 }
 
 body{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 100vh;
     overflow: hidden;
     gap: 30px;
     box-sizing: border-box;
-    margin: 0;
+    margin:0;
     padding: 0;
 }
 
@@ -22,45 +24,83 @@ body{
     height: 35px;
     width:150px;
     border-radius: 10px;
-    background-color: #1929e7;
+    background-color: cornflowerblue;
     color: white;
     font-size: 15px;
     font-weight: bolder;
+    border: transparent;
+    margin-top: 30px;
+
+}
+
+#new_book:hover{
+    cursor: pointer;
+    background-color: #3081eb
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 20px;
+
+
 }
 th, td {
     padding: 10px;
-    border: 1px solid #ccc;
-    text-align: center;
+    text-align: left;
     height: 50px;
-
 }
+
+th{
+    font-size: 20px;
+}
+tr{
+    font-size: 17px;
+    background-color: rgb(242, 242, 242);
+    font-weight: lighter;
+}
+
+tr:hover{
+    background-color: #e3e2e2;
+    cursor: default;
+}
+
+th:first-child {
+    border-top-left-radius: 10px;
+}
+th:last-child {
+    border-top-right-radius: 10px;
+}
+
 th {
-    background-color: #1929e7;
+    background-color: cornflowerblue;
     color: white;
 }
 
 
+tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
 
-/* Dark background overlay */
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+
+
 #overlay {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7); /* semi-transparent black */
+    background: rgba(0,0,0,0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-     /* keeps it above everything */
+
 }
 
-/* Form container (modal box) */
+
 #form_container {
     background: white;
     padding: 20px;
@@ -83,7 +123,7 @@ th {
 }
 
 #form_container button {
-    background: #1929e7;
+    background-color: cornflowerblue;
     color: white;
     border: none;
     cursor: pointer;
@@ -93,9 +133,7 @@ th {
     border-radius: 5px;
 }
 
-#form_container button:hover {
-    background: #0f1aa5;
-}
+
 #form{
     display: flex;
     flex-direction: column;
@@ -118,20 +156,37 @@ th {
     height: 35px;
     width: 80%;
     font-weight: bold;
-    font-size: 15px;
-    background-color: #45466d;
+    font-size: 13px;
+    background-color: cornflowerblue;
     color: white;
     border-radius: 5px;
     border: transparent;
+}
+
+#change_status_button:hover{
+    cursor: pointer;
+    background-color: #3081eb;
 }
 
 #remove_button{
     height: 35px;
     width: 80%;
     font-weight: bold;
-    font-size: 15px;
-    background-color: #45466d;
+    font-size: 13px;
+    background-color: cornflowerblue;
     color: white;
     border-radius: 5px;
     border: transparent;
+}
+
+#remove_button:hover{
+    cursor: pointer;
+    background-color: #3081eb
+}
+
+#header_text {
+    position: relative;
+    top: 80px;
+    margin-top: 100px;
+
 }
