@@ -119,7 +119,18 @@ th {
     width: 80%;
     font-weight: bold;
     font-size: 15px;
-    background-color: #70739b;
+    background-color: #45466d;
+    color: white;
+    border-radius: 5px;
+    border: transparent;
+}
+
+#remove_button{
+    height: 35px;
+    width: 80%;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #45466d;
     color: white;
     border-radius: 5px;
     border: transparent;

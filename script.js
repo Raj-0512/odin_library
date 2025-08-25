@@ -46,7 +46,7 @@ function displayBooks() {
     `;
     table.appendChild(headerRow);
 
-    Library.forEach(book => {
+    Library.forEach((book , index) => {
         const row = document.createElement("tr");
 
 
@@ -56,6 +56,14 @@ function displayBooks() {
         change_status.addEventListener("click" , () => {
             book.read = book.read === "Yes" ? "No" : "Yes";
             displayBooks();
+        });
+
+        const remove_book_button = document.createElement("button");
+        remove_book_button.id = "remove_button";
+        remove_book_button.textContent = "Remove Book";
+        remove_book_button.addEventListener("click" , () => {
+          Library.splice(index , 1);
+          displayBooks();
         });
 
         row.innerHTML = `
@@ -69,7 +77,13 @@ function displayBooks() {
         const status_change_button_container = document.createElement("td");
         status_change_button_container.append(change_status);
 
+        const remove_book_button_container = document.createElement("td");
+        remove_book_button_container.append(remove_book_button);
+
+
+
         row.append(status_change_button_container);
+        row.append(remove_book_button_container);
         table.appendChild(row);
     });
 
