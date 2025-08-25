@@ -1,21 +1,21 @@
 
-function Books(name ,author , pages , read , read_status)
+function Books(name ,author , pages , read)
 {
     this.name = name;
     this.id = crypto.randomUUID();
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.read_status = read_status;
+
 }
 
-const Library = [new Books("Book1" , "Author1" , "892" , "Yes" , "") ,
-                         new Books("Book2", "Author2" , "323" , "No" , "") ,
-                         new Books("Book3", "Author3" ,"224" , "Yes" , "")];
+const Library = [new Books("Book1" , "Author1" , "892" , "Yes") ,
+                         new Books("Book2", "Author2" , "323" , "No") ,
+                         new Books("Book3", "Author3" ,"224" , "Yes")];
 
-function addBooktoLibrary(name , author , pages , read , read_status)
+function addBooktoLibrary(name , author , pages , read)
 {
-    const book = new Books(name , author , pages , read , read_status);
+    const book = new Books(name , author , pages , read );
     Library.push(book);
 }
 
@@ -42,18 +42,34 @@ function displayBooks() {
       <th>Pages</th>
       <th>Read</th>
       <th>Read Status</th>
+      <th>Remove</th>
     `;
     table.appendChild(headerRow);
 
     Library.forEach(book => {
         const row = document.createElement("tr");
+
+
+        const change_status = document.createElement("button");
+        change_status.id = "change_status_button";
+        change_status.textContent = book.read === "Yes" ? "Mark unread" : "Mark read";
+        change_status.addEventListener("click" , () => {
+            book.read = book.read === "Yes" ? "No" : "Yes";
+            displayBooks();
+        });
+
         row.innerHTML = `
           <td><strong>${book.name}</strong></td>
           <td><strong>${book.author}</strong></td>
           <td><strong>${book.pages}</strong></td>
           <td><strong>${book.read}</strong></td>
-          <td><strong>${book.read_status}</strong></td>
+         
         `;
+
+        const status_change_button_container = document.createElement("td");
+        status_change_button_container.append(change_status);
+
+        row.append(status_change_button_container);
         table.appendChild(row);
     });
 

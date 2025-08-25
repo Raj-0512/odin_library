@@ -1,6 +1,6 @@
 #display_container{
     height: fit-content;
-    width:700px;
+    width:800px;
     border: 1px solid black;
 }
 
@@ -104,3 +104,23 @@ th {
     justify-content: center;
 }
 
+.read_status{
+    height: 20px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+#change_status_button{
+    height: 35px;
+    width: 80%;
+    font-weight: bold;
+    font-size: 15px;
+    background-color: #70739b;
+    color: white;
+    border-radius: 5px;
+    border: transparent;
+}
